@@ -6,13 +6,8 @@ import { ComposableMap, Geographies, Geography } from "react-simple-maps";
 const WorldMap = () => {
   const [selectedCountry, setSelectedCountry] = useState(null);
   const [selectedCountryData, setSelectedCountryData] = useState(null);
-  console.log("datttttttt", selectedCountryData);
-
-  //   raw.githubusercontent.com << -- ye URL humko kisi b public repository ke raw file ko access krata hai .. jaise ki ab tum apni is repo ko apne github account pr dalogi toh iss file ka link bnega kuch aissa -----  "https://raw.githubusercontent.com/poojashami/world-map-main/public/world-countries.json";
 
   // =========== url for geographical data of all countries ==============
-
-  //   <<-- Humne direct purane wale link pr jakr jason file hi utha li poori or usko public folder me rkh diya, kuki react-script directly sari cheezein public folder me hi search krta hai , jaise ki image, json file, font file EventCounts, isiliye humne direct path use kiya hai
   const geoUrl = "world-countries.json";
 
   // === get country list =====
@@ -63,18 +58,14 @@ const WorldMap = () => {
       </div>
       <div className="row" style={{ position: "relative", top: "1.5rem" }}>
         <div className="col-lg-9">
-          {/* <<-- ye ComposableMap ek component hai jo baki ke dono components ko ek sath render krne ka kaam kr rrha hai hai */}
           <ComposableMap
             projection="geoMercator"
             projectionConfig={{ scale: 100 }}
           >
-            {/* Ye groURL jo hai jo ki(world-countries.json file ka url hai), ye specifically isi Geographies component me pass krne ke liye json format me bna hua hai, toh isko humne as it is download krke use kr liya hai */}
             <Geographies geography={geoUrl}>
               {({ geographies }) =>
                 geographies.map((geo) => (
                   <Geography
-                    // upr jo geoURL se jitni bhi countries render ho rhi hn wo is Geography Component ki help se render ho rhi hn
-                    //  Mtlb ko geography={geoUrl} <<-- ye humko convert hokar geographies<<- isme mil rha hai , fir hum usko geo <<-- isme ek ek krke utha rhe hn or niche render kr rhe hn
                     key={geo.rsmKey}
                     geography={geo}
                     onClick={() => handleCountryClick(geo)}
@@ -135,9 +126,9 @@ const WorldMap = () => {
               <div>
                 <strong>Time Zones</strong>: {selectedCountryData?.timezones[0]}
               </div>
-              <div className="d-flex">
-                <strong>Language</strong>:
-                {/* <span
+              {/* <div className="d-flex">
+                <strong>Language</strong>: */}
+              {/* <span
                   style={{
                     backgroundColor: "green",
                     color: "white",
@@ -170,8 +161,8 @@ const WorldMap = () => {
                 >
                   {selectedCountryData?.languages.tam}
                 </label> */}
-                {/* {selectedCountryData?.languages} */}
-              </div>
+              {/* {selectedCountryData?.languages} */}
+              {/* </div> */}
               <div>
                 <strong>Region</strong>: {selectedCountryData?.subregion}
               </div>
